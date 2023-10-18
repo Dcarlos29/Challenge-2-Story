@@ -6,5 +6,6 @@
 import Foundation
 
 func chapterOne() {
-    // Your portion of the story goes here
+    print("So there i was driving down the lodge freeway")
+    //
 }
