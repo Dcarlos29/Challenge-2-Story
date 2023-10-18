@@ -5,6 +5,4 @@
 
 import Foundation
 
-func chapterOne() {
-    // Your portion of the story goes here
-}
+func chapterOne() {print("Story Never Ends") }
