@@ -6,5 +6,5 @@
 import Foundation
 
 func chapterTwo() {
-    // Your portion of the story goes here
+    print("roses are red violets are blue")
 }
