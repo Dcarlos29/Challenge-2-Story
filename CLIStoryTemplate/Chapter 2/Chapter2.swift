@@ -154,11 +154,11 @@ func chapterTwo() {
             if answer == "a" {
                 print("you decide to \(scenario.option1)")
                 // currentStory =
-                //userInputIsValid = true
+                userInputIsValid = true
             } else if answer == "b"{
                 print("you decide to \(scenario.option2)")
                 //currentStory = .option2
-                //userInputIsValid = true
+                userInputIsValid = true
             }else{
                 print("Please enter 'a' or 'b'")
             }
