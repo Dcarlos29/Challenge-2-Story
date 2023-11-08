@@ -82,10 +82,10 @@ func chapterTwo() {
             case .intro:
                 return .inside
             case .inside:
-                return .inside
+                return .dontpay
                 // TODO: make this work
             case .keepWalking:
-                return .inside
+                return .end
             case .pay:
                 return .end
             case .dontpay:
@@ -152,13 +152,13 @@ func chapterTwo() {
             //                userInputIsValid = false
             //            }
             if answer == "a" {
-                print(scenario.option1)
+                print("you decide to \(scenario.option1)")
                 // currentStory =
-                userInputIsValid = true
+                //userInputIsValid = true
             } else if answer == "b"{
-                print(scenario.option2)
+                print("you decide to \(scenario.option2)")
                 //currentStory = .option2
-                userInputIsValid = true
+                //userInputIsValid = true
             }else{
                 print("Please enter 'a' or 'b'")
             }
