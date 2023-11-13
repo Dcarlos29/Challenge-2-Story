@@ -51,13 +51,14 @@ func chapterTwo() {
             case .inside:
                 "pay the money"
             case .keepWalking:
-                "Press enter"
+                "enter a or b to continue"
             case .pay:
-                "Press enter"
+                "enter a or b to continue"
             case .dontpay:
-                "Press enter"
+                "enter a or b to continue"
+
             case .end:
-                ""
+                "press enter"
             }
         }
         // TODO: make option2 String?
@@ -66,23 +67,23 @@ func chapterTwo() {
             case .intro:
                 "Keep walking"
             case .keepWalking:
-                "press enter"
+                "Enter a or b to continue"
             case .inside:
                 "Dont pay the money"
             case .pay:
-                ""
+                "enter a or b to continue"
             case .dontpay:
-                ""
+                "enter a or b to continue"
             case .end:
-                ""
+                "press enter"
             }
         }
-        var next: Scenario? {
+        var nextScenarioForOption1: Scenario? {
             switch self {
             case .intro:
                 return .inside
             case .inside:
-                return .dontpay
+                return .pay
                 // TODO: make this work
             case .keepWalking:
                 return .end
@@ -93,7 +94,24 @@ func chapterTwo() {
             case .end:
                 return nil
             }
-            
+        }
+        var nextScenarioForOption2: Scenario? {
+            switch self {
+            case .intro:
+                return .keepWalking
+            case .inside:
+                return .dontpay
+                // TODO: make this work
+                
+            case .keepWalking:
+                return .end
+            case .pay:
+                return .end
+            case .dontpay:
+                return .end
+            case .end:
+                return nil
+            }
         }
     }
 //    struct Scenario{
@@ -121,7 +139,7 @@ func chapterTwo() {
     // let scenarioList:[Scenario] = [Intro,inside]
     
     var currentStory = Scenario.intro
-    var userInputIsValid = false
+    //var userInputIsValid = false
     
     
     //
@@ -137,7 +155,9 @@ func chapterTwo() {
     //        }
     //    }
     //
-    func answerTwoOptions(scenario: Scenario){
+    
+    /// - Returns: `Bool` to indicate if story should continue looping
+    func answerTwoOptions(scenario: Scenario) -> Bool {
         
         if let answer = readLine()?.lowercased() {
             //            switch answer{
@@ -153,24 +173,32 @@ func chapterTwo() {
             //            }
             if answer == "a" {
                 print("you decide to \(scenario.option1)")
-                // currentStory =
-                userInputIsValid = true
+                currentStory = scenario.nextScenarioForOption1 ?? .end
+               // userInputIsValid = true
             } else if answer == "b"{
                 print("you decide to \(scenario.option2)")
-                //currentStory = .option2
-                userInputIsValid = true
-            }else{
+                currentStory = scenario.nextScenarioForOption2 ?? .end
+                
+                //userInputIsValid = true
+            }else if currentStory == Scenario.end {
+                return false
+                
+            } else{
                 print("Please enter 'a' or 'b'")
             }
+           
         }
+        // always returns true. when should we return false to end the story?
         
+        return true
     }
-    print(currentStory.text)
-    print("A) \(currentStory.option1)")
-    print("B) \(currentStory.option2)")
-    while userInputIsValid == false {
+   var storyIsContinuing = true
+    while storyIsContinuing {
+        print(currentStory.text)
+        print("A) \(currentStory.option1)")
+        print("B) \(currentStory.option2)")
         
-        answerTwoOptions(scenario: currentStory)
+        storyIsContinuing = answerTwoOptions(scenario: currentStory)
         
     }
     
